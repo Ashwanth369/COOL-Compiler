@@ -13,13 +13,6 @@ Analytic to calculate sum, average and standard deviation. The analytic also com
   * `constant1`: Optional constant (default value 1).
   * `constant2`: Optional constant (default value 1). 
 
-## Analytic Output
-  * `daily_fired_hours`: Maximum fired hours observed in the last 24 hours
-  * `daily_avg`: Average value of avg_tag after removing outliers
-  * `Note`: Analytic needs atleast 12 datapoints of good data (or 1 hour)
-  * `Note`: No output will be written if the unit is not operating
-
-
 ## Input format
 Here is a sample input json file:
 
@@ -53,13 +46,27 @@ Here is a sample input json file:
             ]
         },
         "constants" : {
+            "threshold" : 4,
             "constant1" : 2,
-            "constant2" : 3,
-            "threshold" : 4
+            "constant2" : 3
         }
     }
 }
 ```
+
+## Analytic Output
+
+### Time Series
+  * `time_stamp`: Same as the time_stamp in input. 
+  * `sum`: Arithemetic sum of the inputs corresponding to each time stamp divided by the constant1.
+  * `mean`: Arithemetic mean of the inputs corresponding to each time stamp.
+  * `std`: Standard deviation of the inputs corresponding to each time stamp.
+  * `deviation`: A boolean output that is 1 when arithemetic sum of the inputs corresponding to each time stamp divided by the constant2 is greater than threshold, else 0.
+
+### Alerts
+  * `time_stamp`: Time stamp of the inputs which have a deviation value of 1.
+  * `score`: The maximum value among the inputs from the above time stamps.
+  * `sensor`: The index of the score in their respective time stamps.
 
 ## Output format
 The output for the above sample input analytic would be:
@@ -84,6 +91,12 @@ The output for the above sample input analytic would be:
             2.333,
             3.333,
             5.333
+        ],
+        "std": [
+            3.215,
+            1.528,
+            2.082,
+            2.082
         ],
         "deviation": [
             1,
