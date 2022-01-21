@@ -1,12 +1,17 @@
-This is a sample python analytic provided by Analytics(CAF) team. 
-1. This analytic takes n no of inputs and generated 2 outputs mean and deviation. 
-2. Input names can vary
-3. Outputs have to be specific names.
-4. One constant of threshold must be present. 
-5. Analytic compares each input value against the threshold and creates alerts and output data. 
-6. One alert is created for each value > threshold. 
-7. This Analytics takes Time Series data as input
-8. Generates Alerts and Time Series data as output
+# Sample Python Analytic for Alerts
+
+Analytic to calculate sum, average and standard deviation. The analytic also compares each input value against a threshold and generates alerts.
+
+## Analytic Input
+  * `time_stamp`: Any date-time format input. 
+  * `inputs`: Can have n number of inputs for a time stamp.
+
+## Analytic Output
+  * `daily_fired_hours`: Maximum fired hours observed in the last 24 hours
+  * `daily_avg`: Average value of avg_tag after removing outliers
+  * `Note`: Analytic needs atleast 12 datapoints of good data (or 1 hour)
+  * `Note`: No output will be written if the unit is not operating
+
 
 ## Input format
 Here is a sample input json file:
