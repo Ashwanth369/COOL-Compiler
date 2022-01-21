@@ -3,8 +3,15 @@
 Analytic to calculate sum, average and standard deviation. The analytic also compares each input value against a threshold and generates alerts.
 
 ## Analytic Input
+
+### Time Series
   * `time_stamp`: Any date-time format input. 
   * `inputs`: Can have n number of inputs for a time stamp.
+
+### Constant
+  * `threshold`: A threshold to compare for the input inorder to generate alerts.
+  * `constant1`: Optional constant (default value 1).
+  * `constant2`: Optional constant (default value 1). 
 
 ## Analytic Output
   * `daily_fired_hours`: Maximum fired hours observed in the last 24 hours
